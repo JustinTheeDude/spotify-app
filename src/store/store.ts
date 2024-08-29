@@ -5,7 +5,12 @@ type LikedArtist = {
     name: string;
 }
 
-export const useLikeStore = create((set) => ({
+type LIkeStore = {
+    likes: LikedArtist[]
+    addArtists: (likedArtist: LikedArtist) => void;
+}
+
+export const useLikeStore = create<LIkeStore>((set) => ({
     likes: [],
     addArtists: (likedArtist: LikedArtist) => {
         set((state) => {

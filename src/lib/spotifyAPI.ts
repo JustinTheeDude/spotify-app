@@ -1,10 +1,8 @@
 import axiosInstance from "@/utils/axios";
+import { ArtistAlbums } from "../../types";
 
-type Album = {
-    items: Array<string>;    
-}
 export const getArtists = async(query: string, signal: AbortSignal) => {
-    const queryResults = await axiosInstance<Album>({
+    const queryResults = await axiosInstance<ArtistAlbums>({
         url: "/search",
         params: {
             q: query,

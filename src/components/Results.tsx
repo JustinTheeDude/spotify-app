@@ -1,25 +1,21 @@
 import ResultLink from "./ResultLink";
 import ResultLoaders from "./ResultLoaders";
 import { uniqBy } from "lodash-es"
+import { Artist, Album } from "../../types";
 
 type ResultsProps = {
-    artistData: Artists;
-    albumData: Albums;
+    artistData: {
+        items: Artist[];
+    };
+    albumData: {
+        items: Album[];
+    };
     status: "pending" | "success" | "error";
 }
 
 type Items = {
     id: string;
     name: string;
-    album_type?: "single" | "album" | "compilation";
-}
-
-type Artists = {
-    items: Items[];
-}
-
-type Albums = {
-    items: Items[];
 }
 
 export default function Results({ artistData, albumData, status }: ResultsProps) {

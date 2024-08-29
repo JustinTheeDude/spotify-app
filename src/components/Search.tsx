@@ -4,7 +4,6 @@ import { getArtists} from "@/lib/spotifyAPI";
 import { useDebounce } from "@uidotdev/usehooks";
 import Results from "@/components/Results";
 
-
 export default function Search() {
     const [searchValue, setSearchValue] = useState<string>("");
     const debouncedSearch = useDebounce<string>(searchValue, 500)
@@ -40,11 +39,11 @@ export default function Search() {
                     placeholder="Search by artist or album"
                 />
             </form>
-            {searchValue.length ? 
+            {searchValue.length && data ? 
                 <Results 
                     data-testid="results"
-                    artistData={data?.artists} 
-                    albumData={data?.albums}
+                    artistData={data.artists} 
+                    albumData={data.albums}
                     status={status}
                 /> 
             : null }
