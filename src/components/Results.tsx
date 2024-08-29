@@ -4,10 +4,10 @@ import { uniqBy } from "lodash-es"
 import { Artist, Album } from "../../types";
 
 type ResultsProps = {
-    artistData: {
+    artistData?: {
         items: Artist[];
     };
-    albumData: {
+    albumData?: {
         items: Album[];
     };
     status: "pending" | "success" | "error";
@@ -27,7 +27,7 @@ export default function Results({ artistData, albumData, status }: ResultsProps)
         <div className="border border-black rounded-md p-4 absolute top-full w-full m-auto h-52 overflow-scroll bg-white">
             <ul className="mb-4">
                 <li className="text-gray-400 font-semibold">Artists</li>
-                {status === "success" && artists.length === 0 ? <p>No artists can be found</p> : null}
+                {status === "success" && artists?.length === 0 ? <p>No artists can be found</p> : null}
                 {status === "pending" && <ResultLoaders />}
                 {status === "success" && uniqueArtists?.map((artist) => (
                     <ResultLink 
@@ -41,7 +41,7 @@ export default function Results({ artistData, albumData, status }: ResultsProps)
             </ul>
             <ul>
                 <li className="text-gray-400 font-semibold">Albums</li>
-                {status === "success" && albums.length === 0 ? <p>No albums can be found</p> : null}
+                {status === "success" && albums?.length === 0 ? <p>No albums can be found</p> : null}
                 {status === "pending" && <ResultLoaders />}
                 {status === "success" && albums?.map((album) => (
                     <ResultLink 
