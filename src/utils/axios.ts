@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
                 url: "/api/refresh_token",
             });
             const res = spotifyAccessToken.data;
-            process.env["NEXT_PUBLIC_ACCESS_TOKEN"] = res.accessToken
+            process.env.NEXT_PUBLIC_ACCESS_TOKEN = res.accessToken
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
             return axiosInstance(request);
         }
