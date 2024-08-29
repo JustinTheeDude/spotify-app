@@ -42,8 +42,8 @@ export default function Search() {
             {searchValue.length ? 
                 <Results 
                     data-testid="results"
-                    artistData={data.artists} 
-                    albumData={data.albums}
+                    artistData={data?.artists} 
+                    albumData={data?.albums}
                     status={status}
                 /> 
             : null }
