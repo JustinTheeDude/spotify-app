@@ -4,8 +4,20 @@ import LikeButton from "@/components/LikeButton"
 import Search from "@/components/Search";
 import BackButton from "@/components/BackButton";
 import { getSingleArtist, getArtistsAlbums } from "@/lib/spotifyAPI"
+import { Artist, Album } from "../../../types";
 
-export default function Artists({ artist, albums }) {
+type ArtistsProps = {
+    artist: Artist;
+    albums: Album[];
+}
+
+type ArtistContext = {
+    params: {
+        slug: string;
+    }
+}
+
+export default function Artists({ artist, albums }: ArtistsProps) {
     return (
         <div>
             <div className="p-4 bg-black">
@@ -49,7 +61,7 @@ export default function Artists({ artist, albums }) {
     )
 }
 
-export  async function getServerSideProps(context) {
+export  async function getServerSideProps(context: ArtistContext) {
     const artistData = await getSingleArtist(context.params.slug)
     const albumData = await getArtistsAlbums(context.params.slug)
 

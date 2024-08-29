@@ -1,17 +1,24 @@
 export type Artist = {
     id: string;
     name: string;
-    followers: number;
+    followers: {
+        total: number
+    };
     genres: Array<string>;
     images: Image[];
+    popularity: number;
 }
 
 export type Album = {
     id: string;
     name: string;
     images: Image[];
-    tracks: Track[];
+    tracks: {
+        items: Track[];
+    };
     album_type?: "single" | "album" | "compilation";
+    release_date: string;
+    total_tracks: number;
 }
 
 export type ArtistAlbums = {
@@ -24,6 +31,7 @@ export type ArtistAlbums = {
 }
 
 type Track = {
+    id: string;
     name: string;
 }
 

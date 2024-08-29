@@ -2,8 +2,15 @@ import { getAlbum } from "@/lib/spotifyAPI"
 import AlbumInfo from "@/components/AlbumInfo";
 import BackButton from "@/components/BackButton";
 import Search from "@/components/Search";
+import { Album } from "../../../types";
 
-export default function Albums({ albumDetails }) {
+type AlbumContext = {
+    params: {
+        slug: string;
+    }
+}
+
+export default function Albums({ albumDetails }: {albumDetails: Album }) {
     return (
         <div>
             <div className="p-4 bg-black">
@@ -39,7 +46,7 @@ export default function Albums({ albumDetails }) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: AlbumContext) {
     const album = await getAlbum(context.params.slug);
 
     return {
