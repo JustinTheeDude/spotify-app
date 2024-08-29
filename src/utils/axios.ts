@@ -23,13 +23,13 @@ axiosInstance.interceptors.response.use(
         const request = error.config
         if (error?.response?.status === 401) {
             const spotifyAccessToken = await axios({
-                baseURL: "http://localhost:3000",
+                baseURL: process.env.DEV_ENV,
                 method: "get",
                 url: "/api/refresh_token",
             });
-            const { accessToken } = spotifyAccessToken.data;
-            process.env["NEXT_PUBLIC_ACCESS_TOKEN"] = accessToken
-            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+            const res = spotifyAccessToken.data;
+            process.env["NEXT_PUBLIC_ACCESS_TOKEN"] = res.accessToken
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${res.accessToken}`;
             return axiosInstance(request);
         }
     }
