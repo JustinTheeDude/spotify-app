@@ -39,7 +39,7 @@ export default function Search() {
                     placeholder="Search by artist or album"
                 />
             </form>
-            {searchValue.length && data ? 
+            {searchValue.length ? 
                 <Results 
                     data-testid="results"
                     artistData={data.artists} 
